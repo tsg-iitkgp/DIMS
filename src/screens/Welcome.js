@@ -7,9 +7,15 @@ export default function Welcome() {
             <h1>
                 Welcome!
             </h1>
+            <Link to="/private">
+                Go to private route - about
+            </Link>
+            <Link to="/login">
+                Login
+            </Link>
             <Link to="/about">
-                about
+                About
             </Link>
         </div>
-    )
+    );
 }

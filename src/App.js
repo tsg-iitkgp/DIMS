@@ -1,6 +1,8 @@
 import { MemoryRouter as Router, Switch, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 
 import About from './screens/About';
+import Login from './screens/Login';
 import Welcome from './screens/Welcome';
 
 
@@ -8,8 +10,10 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/about" component={About} />
-        <Route path="/" component={Welcome} />
+        <Route exact path="/" component={Welcome} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/login" component={Login} />
+        <PrivateRoute exact path="/private" component={About} />
       </Switch>
     </Router>
   );

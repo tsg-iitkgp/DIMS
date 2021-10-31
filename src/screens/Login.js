@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function About({ history }) {
-    
+export default function Login() {
     return (
         <div>
             <h1>
-                About
+                Login!
             </h1>
-            <Link to='/'>
+            <Link to="/">
                 Home
             </Link>
         </div>
