@@ -9,10 +9,10 @@ export default function Welcome() {
             </h1>
             <Link to="/private">
                 Go to private route - about
-            </Link>
+            </Link> <br />
             <Link to="/login">
                 Login
-            </Link>
+            </Link> <br />
             <Link to="/about">
                 About
             </Link>

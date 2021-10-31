@@ -10,9 +10,10 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 800,
         height: 600,
+        icon: path.join(__dirname, '../src/assets/icons/Electron_Icon.png'),
         webPreferences: {
             // Make this true if you want to use node packages
-            nodeIntegration: false,
+            nodeIntegration: true,
             enableRemoteModule: true
         }
     });
