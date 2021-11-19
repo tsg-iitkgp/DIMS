@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 import logout from "../utils/logout";
 
 export default function Dashboard({ history }) {
@@ -36,19 +37,21 @@ export default function Dashboard({ history }) {
     }, [history]);
 
     return (
-        <div>
-            <h1>
-                Dashboard
-            </h1>
-            <p>
-                {privateData}
-            </p>
-            <Link to='/'>
-                Home
-            </Link>
-            <button onClick={()=>(logout(history))}>
-                Logout
-            </button>
-        </div>
+        <Layout>
+            <div>
+                <h1>
+                    Dashboard
+                </h1>
+                <p>
+                    {privateData}
+                </p>
+                <Link to='/'>
+                    Home
+                </Link>
+                <button onClick={() => (logout(history))}>
+                    Logout
+                </button>
+            </div>
+        </Layout>
     );
 }

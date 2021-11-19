@@ -1,0 +1,55 @@
+.topNavContainer {
+    background-color: #f1c40f;
+}
+
+.topNav {
+    display: flex;
+    align-items: center;
+    width: 90vw;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.topNav .navHeadingContainer {
+    align-items: center;
+}
+
+.topNav .navHeadingContainer h1 {
+    font-size: 24px;
+}
+
+.topNav .navItemsContainer {
+    flex-grow: 1;
+    display: flex;
+    justify-content: end;
+}
+
+.topNav .navItemsContainer .navItem {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.sideNav {
+    max-width: 20vw;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1c40f;
+}
+
+.sideNav .sideItem {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.bgContainer {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+}
+
+.mainContainer {
+    flex-grow: 1;
+}
