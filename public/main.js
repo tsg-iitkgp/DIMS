@@ -8,8 +8,8 @@ require('@electron/remote/main').initialize();
 function createWindow() {
     // Create the browser window.
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 900,
         icon: path.join(__dirname, '../src/assets/icons/Electron_Icon.png'),
         webPreferences: {
             // Make this true if you want to use node packages

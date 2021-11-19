@@ -1,0 +1,63 @@
+.mainContainer {
+    min-height: 100vh;
+    background-color: #f1c40f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.formContainer {
+    min-height: 50vh;
+    width: 90vw;
+    max-width: 600px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20%;
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputContainer {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputContainer input {
+    padding: 10px;
+    border-radius: 3px;
+    border-width: 1px;
+}
+
+.loginBtn {
+    width: 100%;
+    padding: 10px;
+    background-color: #f1c40f;
+    /*
+    color: white;
+    font-weight: bold;
+    */
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.loginBtn:hover {
+    background-color: #dfb50e;
+}
+
+.errorContainer {
+    color: red;
+    margin: 10px auto;
+}

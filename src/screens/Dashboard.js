@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import logout from "../utils/logout";
 
-export default function About({ history }) {
+export default function Dashboard({ history }) {
     const [privateData, setPrivateData] = useState('');
 
     useEffect(() => {
@@ -37,7 +38,7 @@ export default function About({ history }) {
     return (
         <div>
             <h1>
-                About
+                Dashboard
             </h1>
             <p>
                 {privateData}
@@ -45,6 +46,9 @@ export default function About({ history }) {
             <Link to='/'>
                 Home
             </Link>
+            <button onClick={()=>(logout(history))}>
+                Logout
+            </button>
         </div>
     );
 }

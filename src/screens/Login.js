@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Styles from '../styles/screens/login.module.css';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
@@ -15,6 +16,7 @@ export default function Login({ history }) {
 
     const loginHandler = (e) => {
         e.preventDefault();
+        setError('');
 
         const postData = {
             username,
@@ -32,9 +34,14 @@ export default function Login({ history }) {
         fetch('http://localhost:5050/api/inventory_system/auth/login', options)
             .then((response) => (response.json()))
             .then((jsonData) => {
-                console.log(jsonData);
-                localStorage.setItem('authToken', jsonData.token);
-                history.push('/');
+                // console.log(jsonData);
+                if (jsonData.token) {
+                    localStorage.setItem('authToken', jsonData.token);
+                    history.push('/');
+                } else {
+                    setError(jsonData.error);
+                }
+
             }).catch((error) => {
                 console.log(error);
                 /*
@@ -47,23 +54,37 @@ export default function Login({ history }) {
             });
     }
     return (
-        <div>
-            <h1>
-                Login!
-            </h1>
-            <Link to="/">
-                Home
-            </Link>
-            <div>
-                <div>
-                    <input onChange={(e)=>(setUsername(e.target.value))} />
-                    <input onChange={(e)=>(setPassword(e.target.value))} />
+        <div className={Styles.mainContainer}>
+            <div className={Styles.card}>
+                <div className={Styles.formContainer}>
+                    <div className={Styles.errorContainer}>
+                        {error}
+                    </div>
+                    <h1>
+                        Login!
+                    </h1>
+                    <div>
+                        <Link to="/">
+                            Home
+                        </Link>
+                    </div>
+                    <form className={Styles.form}>
+                        <div>
+                            <div className={Styles.inputContainer}>
+                                <input type="text" onChange={(e) => (setUsername(e.target.value))} />
+                            </div>
+                            <div className={Styles.inputContainer}>
+                                <input type="password" onChange={(e) => (setPassword(e.target.value))} />
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" className={Styles.loginBtn} onClick={loginHandler}>
+                                Login
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <button onClick={loginHandler}>
-                        Login
-                    </button>
-                </div>
+                <div></div>
             </div>
         </div>
     );
