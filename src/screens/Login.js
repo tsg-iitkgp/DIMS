@@ -63,11 +63,6 @@ export default function Login({ history }) {
                     <h1>
                         Login!
                     </h1>
-                    <div>
-                        <Link to="/">
-                            Home
-                        </Link>
-                    </div>
                     <form className={Styles.form}>
                         <div>
                             <div className={Styles.inputContainer}>

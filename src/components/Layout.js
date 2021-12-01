@@ -13,16 +13,29 @@ export default function Layout({ children }) {
                         </h1>
                     </div>
                     <div className={Styles.navItemsContainer}>
-                        <NavLink to="/" className={Styles.navItem}>
-                            Home
-                        </NavLink>
+                        <div className={Styles.navItem}>
+                            <span>
+                                Logout
+                            </span>
+                            <div className={Styles.navDropdownContent}>
+                                <Link to="/logout">
+                                    Logout
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>
             <div className={Styles.bgContainer}>
                 <div className={Styles.sideNav}>
                     <Link to="/" className={Styles.sideItem}>
-                        Home
+                        Dashboard
+                    </Link>
+                    <Link to="/requests" className={Styles.sideItem}>
+                        Requests
+                    </Link>
+                    <Link to="/transactions" className={Styles.sideItem}>
+                        Transactions
                     </Link>
                     <Link to="/private" className={Styles.sideItem}>
                         Private

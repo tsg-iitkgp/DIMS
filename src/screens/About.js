@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Layout from "../components/Layout";
 
 export default function About({ history }) {
     const [privateData, setPrivateData] = useState('');
@@ -35,16 +36,18 @@ export default function About({ history }) {
     }, [history]);
 
     return (
-        <div>
-            <h1>
-                About
-            </h1>
-            <p>
-                {privateData}
-            </p>
-            <Link to='/'>
-                Home
-            </Link>
-        </div>
+        <Layout>
+            <div>
+                <h1>
+                    About
+                </h1>
+                <p>
+                    {privateData}
+                </p>
+                <Link to='/'>
+                    Home
+                </Link>
+            </div>
+        </Layout>
     );
 }

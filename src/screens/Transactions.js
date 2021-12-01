@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Layout from "../components/Layout";
-import Table from "../components/Table";
-import logout from "../utils/logout";
+import Layout from '../components/Layout';
 
-export default function Dashboard({ history }) {
-    const [storeBalance, setStoreBalance] = useState([]);
+function Transactions({history}) {
+
+    const [storeTransactions, setStoreTransactions] = useState([]);
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) {
             history.push('/login');
         }
 
-        const fetchStoreBalance = async () => {
+        const fetchStoreTransactions = async () => {
             const options = {
                 method: 'GET',
                 headers: {
@@ -20,18 +18,21 @@ export default function Dashboard({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch('http://localhost:5050/api/inventory_system/my-store/balance', options)
+            fetch('http://localhost:5050/api/inventory_system/my-store/transactions', options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
-                    const data = []
+                    /*const data = []
                     for(let item of jsonData.data) {
                         data.push({
                             name: item.name,
                             quantity: item.StoreItem.quantity
                         })
                     }
-                    console.log(data)
-                    setStoreBalance(data);
+                    console.log(data)*/
+                    console.log(jsonData.data);
+                    if(jsonData.data) {
+                        setStoreTransactions(jsonData.data);
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -41,20 +42,14 @@ export default function Dashboard({ history }) {
                 });
         }
 
-        fetchStoreBalance();
+        fetchStoreTransactions();
 
     }, [history]);
-
     return (
         <Layout>
-            <div>
-                <h1>
-                    Dashboard
-                </h1>
-                <p>
-                </p>
-                <Table data={storeBalance} />
-            </div>
+            
         </Layout>
-    );
+    )
 }
+
+export default Transactions;
