@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import Table from "../components/Table";
+import ItemTable from "../components/ItemTable";
 import logout from "../utils/logout";
 
 export default function Dashboard({ history }) {
     const [storeBalance, setStoreBalance] = useState([]);
+    const [storeName, setStoreName] = useState('');
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) {
             history.push('/login');
+        }
+
+        const fetchStore = async () => {
+            const options = {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`
+                },
+            }
+            fetch(`http://localhost:5050/api/inventory_system/my-store`, options)
+                .then((response) => (response.json()))
+                .then((data)=>(setStoreName(data.storeName)))
         }
 
         const fetchStoreBalance = async () => {
@@ -42,6 +56,7 @@ export default function Dashboard({ history }) {
         }
 
         fetchStoreBalance();
+        fetchStore();
 
     }, [history]);
 
@@ -49,11 +64,11 @@ export default function Dashboard({ history }) {
         <Layout>
             <div>
                 <h1>
-                    Dashboard
+                    Dashboard - {storeName}
                 </h1>
                 <p>
                 </p>
-                <Table data={storeBalance} />
+                <ItemTable data={storeBalance} />
             </div>
         </Layout>
     );

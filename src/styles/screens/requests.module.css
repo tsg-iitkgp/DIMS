@@ -1,0 +1,67 @@
+.requestsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+}
+
+.header .item {
+    text-align: center;
+    flex-grow: 1;
+    color: rgb(131, 131, 131);
+    padding: 25px;
+    border-bottom: 1px solid rgb(219, 219, 219);
+    cursor: pointer;
+}
+
+.header .item.active {
+    color: black;
+    font-size: bold;
+    border-bottom: 1px solid #000;
+}
+
+.noRequestsContainer {
+    padding: 100px;
+    text-align: center;
+}
+
+.createRequest {
+    display: flex;
+    justify-content: end;
+    padding: 20px;
+    align-items: center;
+}
+
+.createRequest .plusIconContainer {
+    background-color: rgb(15, 218, 15);
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.createRequest .plusIconContainer:hover {
+    background-color: rgb(16, 170, 16);
+    transition: all 0.3s ease;
+}
+
+.createRequest .plusIcon {
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.createRequestModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.createRequestModal .formContainer {
+    padding: 100px;
+}

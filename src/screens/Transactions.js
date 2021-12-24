@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Layout from '../components/Layout';
+import TransactionTable from "../components/TransactionTable";
 
-function Transactions({history}) {
+function Transactions({ history }) {
 
     const [storeTransactions, setStoreTransactions] = useState([]);
 
@@ -30,7 +31,7 @@ function Transactions({history}) {
                     }
                     console.log(data)*/
                     console.log(jsonData.data);
-                    if(jsonData.data) {
+                    if (jsonData.data) {
                         setStoreTransactions(jsonData.data);
                     }
                 })
@@ -47,7 +48,9 @@ function Transactions({history}) {
     }, [history]);
     return (
         <Layout>
-            
+            <div>
+                <TransactionTable data={storeTransactions} />
+            </div>
         </Layout>
     )
 }
