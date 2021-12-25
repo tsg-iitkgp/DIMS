@@ -22,14 +22,16 @@ function Transactions({ history }) {
             fetch('http://localhost:5050/api/inventory_system/my-store/transactions', options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
-                    /*const data = []
+                    /*
+                    const data = []
                     for(let item of jsonData.data) {
                         data.push({
                             name: item.name,
                             quantity: item.StoreItem.quantity
                         })
                     }
-                    console.log(data)*/
+                    console.log(data)
+                    */
                     console.log(jsonData.data);
                     if (jsonData.data) {
                         setStoreTransactions(jsonData.data);

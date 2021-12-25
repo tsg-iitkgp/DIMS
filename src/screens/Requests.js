@@ -11,6 +11,8 @@ function Requests({ history }) {
     const [requests, setRequests] = useState([]);
     const [requestsCategory, setRequestsCategory] = useState('received');
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [stores, setStores] = useState([]);
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) {
@@ -38,7 +40,7 @@ function Requests({ history }) {
                         })
                     }
                     console.log(data)*/
-                    console.log(jsonData.data);
+                    // console.log(jsonData.data);
                     if (jsonData.data) {
                         setRequests(jsonData.data.filter((item) => (item.isPending !== false)));
                     }
@@ -48,6 +50,24 @@ function Requests({ history }) {
                     localStorage.removeItem('authToken');
                     history.push('/login');
                     // setError('You are not authorized. Please Login');
+                });
+
+            fetch(`http://localhost:5050/api/inventory_system/all_stores/`, options)
+                .then((response) => (response.json()))
+                .then((jsonData) => {
+                    setStores(jsonData.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+            fetch(`http://localhost:5050/api/inventory_system/all_items/`, options)
+                .then((response) => (response.json()))
+                .then((jsonData) => {
+                    setItems(jsonData.data);
+                })
+                .catch((error) => {
+                    console.log(error);
                 });
         }
 
@@ -63,7 +83,33 @@ function Requests({ history }) {
         setIsFormOpen(true)
     }
 
-    const closeForm = () => {
+    const raiseRequest = (e) => {
+        e.preventDefault();
+        var formData = {};
+
+        const rawFormData = new FormData(e.target)
+
+        rawFormData.forEach(function (value, key) {
+            formData[key] = value;
+        });
+
+        console.log(formData);
+        const options = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem('authToken')}`
+            },
+            body: JSON.stringify(formData)
+        }
+
+        fetch('http://localhost:5050/api/inventory_system/requests/raise', options)
+        .then((response) => (response.json()))
+        .then((jsonData) => (console.log(jsonData)));
+        closeForm();
+    }
+
+    const closeForm = (e) => {
         setIsFormOpen(false)
     }
 
@@ -83,8 +129,8 @@ function Requests({ history }) {
                         requestsCategory === 'received' ? (
                             <div>
                                 {
-                                    requests.length ? (requests.map((request) => (
-                                        <ReceivedRequest data={request} />
+                                    requests.length ? (requests.map((request, index) => (
+                                        <ReceivedRequest setRequests={setRequests} key={index} data={request} />
                                     ))) : (
                                         <div className={Styles.noRequestsContainer}>
                                             No Pending Requests
@@ -106,14 +152,63 @@ function Requests({ history }) {
                                     onRequestClose={closeForm}
                                     style={{}}
                                     contentLabel="Create a Request"
+                                    ariaHideApp={false}
                                 >
                                     <div className={Styles.createRequestModal}>
                                         <div className={Styles.formContainer}>
+                                            <h1 className={Styles.formHeading}>
+                                                Create a Request
+                                            </h1>
+                                            <form onSubmit={raiseRequest}>
+                                                <div>
+                                                    <label>
+                                                        From Store:
+                                                    </label>
+                                                    <select name="fromStoreId">
+                                                        {
+                                                            stores && stores.map((store, index) => (
+                                                                <option key={index} value={store.id}>{store.name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                    <label>
+                                                        To Store:
+                                                    </label>
+                                                    <select name="toStoreId">
+                                                        {
+                                                            stores && stores.map((store, index) => (
+                                                                <option key={index} value={store.id}>{store.name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                </div>
 
+                                                <div>
+                                                    <label>
+                                                        Item:
+                                                    </label>
+                                                    <select name="itemId">
+                                                        {
+                                                            items && items.map((store, index) => (
+                                                                <option key={index} value={store.id}>{store.name}</option>
+                                                            ))
+                                                        }
+                                                    </select>
+                                                    <label>
+                                                        Quantity:
+                                                    </label>
+                                                    <input type='number' defaultValue={0} name='quantity' />
+                                                </div>
+                                                <div>
+                                                    <button type="submit">
+                                                        Submit
+                                                    </button>
+                                                    <button onClick={closeForm}>
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <form>
-                                            <input type='text' />
-                                        </form>
                                     </div>
                                 </Modal>
                                 {
@@ -121,7 +216,7 @@ function Requests({ history }) {
                                         <div>
                                             {
                                                 requests.map((request) => (
-                                                    <SentRequest data={request} />
+                                                    <SentRequest setRequests={setRequests} data={request} />
                                                 ))
                                             }
                                         </div>

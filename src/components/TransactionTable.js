@@ -35,7 +35,7 @@ function TransactionTable({ data }) {
             <tbody>
                 {
                     data.sort((a, b) => (b.id - a.id)).map((item, index) => (
-                        <tr>
+                        <tr key={index}>
                             <td>
                                 {item.id}
                             </td>

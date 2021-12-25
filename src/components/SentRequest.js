@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from '../styles/components/request.module.css';
 
-function SentRequest({ data }) {
+function SentRequest({ data, setRequests }) {
 
     const options = {
         method: 'GET',
@@ -11,19 +11,19 @@ function SentRequest({ data }) {
         },
     }
 
-    const approveRequest = (id) => {
-        fetch(`http://localhost:5050/api/inventory_system/requests/approve?reqId=${id}`, options)
+    const withdrawRequest = (id) => {
+        fetch(`http://localhost:5050/api/inventory_system/requests/withdraw?reqId=${id}`, options)
             .then((response) => (response.json()))
-            .then((data)=>(console.log(data)))
+            .then((data)=>(console.log(data)));
+        removeRequest();
     }
-    const denyRequest = (id) => {
-        fetch(`http://localhost:5050/api/inventory_system/requests/deny?reqId=${id}`, options)
-            .then((response) => (response.json()))
-            .then((data)=>(console.log(data)))
+
+    const removeRequest = () => {
+        setRequests((requests) => (requests.filter((request) => (request.id !== data.id))));
     }
 
     return (
-        <div className={Styles.receivedRequest}>
+        <div className={Styles.sentRequest}>
             <table>
                 <tr>
                     <th>
@@ -61,11 +61,8 @@ function SentRequest({ data }) {
                 </tr>
             </table>
             <div>
-                <button onClick={() => approveRequest(data.id)}>
-                    Approve
-                </button>
-                <button onClick={() => denyRequest(data.id)}>
-                    Deny
+                <button className={Styles.deny} onClick={() => withdrawRequest(data.id)}>
+                    Withdraw
                 </button>
             </div>
         </div>
