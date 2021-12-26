@@ -37,7 +37,7 @@ export default function Layout({ children }) {
                     <Link to="/transactions" className={Styles.sideItem}>
                         Transactions
                     </Link>
-                    <Link to="/private" className={Styles.sideItem}>
+                    {/* <Link to="/private" className={Styles.sideItem}>
                         Private
                     </Link>
                     <Link to="/login" className={Styles.sideItem}>
@@ -45,7 +45,7 @@ export default function Layout({ children }) {
                     </Link>
                     <Link to="/about" className={Styles.sideItem}>
                         About
-                    </Link>
+                    </Link> */}
                 </div>
                 <div className={Styles.mainContainer}>
                     {children}

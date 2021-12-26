@@ -32,7 +32,6 @@ function Transactions({ history }) {
                     }
                     console.log(data)
                     */
-                    console.log(jsonData.data);
                     if (jsonData.data) {
                         setStoreTransactions(jsonData.data);
                     }

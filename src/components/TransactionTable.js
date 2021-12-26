@@ -30,6 +30,9 @@ function TransactionTable({ data }) {
                     <th>
                         Closed By
                     </th>
+                    <th>
+                        Time
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -52,13 +55,22 @@ function TransactionTable({ data }) {
                                 {item.to.name}
                             </td>
                             <td>
-                                {item.approved?"Approved":"Denied"}
+                                {item.approved ? "Approved" : "Denied"}
                             </td>
                             <td>
                                 {item.requestedBy.username}
                             </td>
                             <td>
                                 {item.closedBy.username}
+                            </td>
+                            <td>
+                                {() => {
+                                    const time = new Date(item.updatedAt)
+                                    console.log(time.toISOString())
+                                    return (
+                                        time
+                                    )
+                                }}
                             </td>
                         </tr>
                     ))

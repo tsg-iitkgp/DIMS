@@ -64,4 +64,61 @@
 
 .createRequestModal .formContainer {
     padding: 100px;
+    background-color: #f1c40f;
+    border-radius: 10px;
+}
+
+.createRequestModal .createRequestForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.createRequestModal .createRequestForm .btnContainer {
+    display: flex;
+}
+
+.createRequestModal .createRequestForm button {
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    padding: 8px;
+    margin: 0 5px;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+
+.createRequestModal .createRequestForm button.approve {
+    background-color: rgb(121, 192, 14);
+    transition: all 0.3s ease;
+}
+
+.createRequestModal .createRequestForm button.approve:hover {
+    background-color: rgb(99, 165, 0);
+    transition: all 0.3s ease;
+}
+
+.createRequestModal .createRequestForm button.deny:hover {
+    background-color: rgb(207, 0, 0);
+    transition: all 0.3s ease;
+}
+
+.createRequestModal .createRequestForm button.deny {
+    background-color: red;
+    transition: all 0.3s ease;
+}
+
+.createRequestModal .createRequestForm .inputContainer {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.createRequestModal .createRequestForm .inputContainer input,
+.createRequestModal .createRequestForm .inputContainer select,
+.createRequestModal .createRequestForm .inputContainer select option {
+    padding: 10px;
+    border-radius: 3px;
+    border-width: 1px;
+    background-color: rgb(245, 245, 245);
 }

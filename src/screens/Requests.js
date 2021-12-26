@@ -11,7 +11,7 @@ function Requests({ history }) {
     const [requests, setRequests] = useState([]);
     const [requestsCategory, setRequestsCategory] = useState('received');
     const [isFormOpen, setIsFormOpen] = useState(false);
-    const [stores, setStores] = useState([]);
+    const [centralStores, setCentralStores] = useState([]);
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -52,10 +52,11 @@ function Requests({ history }) {
                     // setError('You are not authorized. Please Login');
                 });
 
-            fetch(`http://localhost:5050/api/inventory_system/all_stores/`, options)
+            fetch(`http://localhost:5050/api/inventory_system/from-stores`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
-                    setStores(jsonData.data);
+                    console.log(jsonData)
+                    setCentralStores(jsonData.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -104,8 +105,8 @@ function Requests({ history }) {
         }
 
         fetch('http://localhost:5050/api/inventory_system/requests/raise', options)
-        .then((response) => (response.json()))
-        .then((jsonData) => (console.log(jsonData)));
+            .then((response) => (response.json()))
+            .then((jsonData) => (console.log(jsonData)));
         closeForm();
     }
 
@@ -159,51 +160,59 @@ function Requests({ history }) {
                                             <h1 className={Styles.formHeading}>
                                                 Create a Request
                                             </h1>
-                                            <form onSubmit={raiseRequest}>
+                                            <form className={Styles.createRequestForm} onSubmit={raiseRequest}>
                                                 <div>
-                                                    <label>
-                                                        From Store:
-                                                    </label>
-                                                    <select name="fromStoreId">
-                                                        {
-                                                            stores && stores.map((store, index) => (
-                                                                <option key={index} value={store.id}>{store.name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                    <label>
-                                                        To Store:
-                                                    </label>
-                                                    <select name="toStoreId">
-                                                        {
-                                                            stores && stores.map((store, index) => (
-                                                                <option key={index} value={store.id}>{store.name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
+                                                    <div className={Styles.inputContainer}>
+                                                        <label>
+                                                            From Store:
+                                                        </label>
+                                                        <select name="fromStoreId">
+                                                            {
+                                                                centralStores && centralStores.map((store, index) => (
+                                                                    <option key={index} value={store.id}>{store.name}</option>
+                                                                ))
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    {/* <div className={Styles.inputContainer}>
+                                                        <label>
+                                                            To Store:
+                                                        </label>
+                                                        <select name="toStoreId">
+                                                            {
+                                                                stores && stores.map((store, index) => (
+                                                                    <option key={index} value={store.id}>{store.name}</option>
+                                                                ))
+                                                            }
+                                                        </select>
+                                                    </div> */}
                                                 </div>
 
                                                 <div>
-                                                    <label>
-                                                        Item:
-                                                    </label>
-                                                    <select name="itemId">
-                                                        {
-                                                            items && items.map((store, index) => (
-                                                                <option key={index} value={store.id}>{store.name}</option>
-                                                            ))
-                                                        }
-                                                    </select>
-                                                    <label>
-                                                        Quantity:
-                                                    </label>
-                                                    <input type='number' defaultValue={0} name='quantity' />
+                                                    <div className={Styles.inputContainer}>
+                                                        <label>
+                                                            Item:
+                                                        </label>
+                                                        <select name="itemId">
+                                                            {
+                                                                items && items.map((store, index) => (
+                                                                    <option key={index} value={store.id}>{store.name}</option>
+                                                                ))
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                    <div className={Styles.inputContainer}>
+                                                        <label>
+                                                            Quantity:
+                                                        </label>
+                                                        <input type='number' defaultValue={0} name='quantity' />
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <button type="submit">
+                                                <div className={Styles.btnContainer}>
+                                                    <button className={Styles.approve} type="submit">
                                                         Submit
                                                     </button>
-                                                    <button onClick={closeForm}>
+                                                    <button className={Styles.deny} onClick={closeForm}>
                                                         Cancel
                                                     </button>
                                                 </div>
