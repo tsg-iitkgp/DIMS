@@ -41,10 +41,11 @@ export default function Dashboard({ history }) {
                     for(let item of jsonData.data) {
                         data.push({
                             name: item.name,
-                            quantity: item.StoreItem.quantity
+                            quantity: item.StoreItem.quantity,
+                            total_quantity: item.total_quantity
                         })
                     }
-                    console.log(data)
+                    console.log(jsonData.data[0].name)
                     setStoreBalance(data);
                 })
                 .catch((error) => {
@@ -69,6 +70,9 @@ export default function Dashboard({ history }) {
                 <p>
                 </p>
                 <ItemTable data={storeBalance} />
+            </div>
+            <div>
+                
             </div>
         </Layout>
     );

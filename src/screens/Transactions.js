@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from '../components/Layout';
 import TransactionTable from "../components/TransactionTable";
+import Styles from '../styles/screens/transactions.module.css';
 
 function Transactions({ history }) {
 
@@ -50,6 +51,13 @@ function Transactions({ history }) {
     return (
         <Layout>
             <div>
+                <div className={Styles.actionsContainer}>
+                    <input type='datetime-local' />
+                    <input type='datetime-local' />
+                    <button>
+                        Generate Report
+                    </button>
+                </div>
                 <TransactionTable data={storeTransactions} />
             </div>
         </Layout>

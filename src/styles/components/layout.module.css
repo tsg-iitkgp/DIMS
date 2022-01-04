@@ -39,10 +39,21 @@
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 1;
+    flex-direction: column;
 }
 
 .topNav .navItemsContainer .navItem:hover .navDropdownContent{
-    display: block;
+    display: flex;
+}
+
+.topNav .navItemsContainer .navItem .navDropdownContent .navDropdownItem {
+    padding: 10px;
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+}
+
+.topNav .navItemsContainer .navItem .navDropdownContent .navDropdownItem:hover {
+    color: #000;
 }
 
 .sideNav {
@@ -60,13 +71,30 @@
     color: black;
 }
 
+.sideNav .sideItem:hover {
+    color: #fff;
+}
+
+.topNav .navItemsContainer .navItem .profileIconContainer {
+    border: 2px solid rgb(0, 0, 0);
+    border-radius:40%;
+    padding: 10px;
+}
+
 
 .bgContainer {
-    min-height: 100vh;
+    flex-grow: 1;
     display: flex;
 }
 
 .mainContainer {
     flex-grow: 1;
     padding: 40px;
+    overflow-y: auto;
+}
+
+.topLevelContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }

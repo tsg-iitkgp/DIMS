@@ -35,7 +35,7 @@ function ItemTable({ data }) {
                     </div>
                     <div className={Styles.tableCell}>
                         <span>
-                            0
+                            {item.total_quantity}
                         </span>
                     </div>
                 </React.Fragment>))

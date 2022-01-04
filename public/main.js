@@ -10,6 +10,8 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1200,
         height: 900,
+        // maxWidth: 1200,
+        // maxHeight: 900,
         icon: path.join(__dirname, '../src/assets/icons/Electron_Icon.png'),
         webPreferences: {
             // Make this true if you want to use node packages
@@ -17,6 +19,8 @@ function createWindow() {
             enableRemoteModule: true
         }
     });
+
+    win.setResizable(false);
 
     win.loadURL(
         isDev

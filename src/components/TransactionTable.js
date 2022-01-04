@@ -2,6 +2,9 @@ import React from 'react';
 import Styles from '../styles/components/transaction-table.module.css';
 
 function TransactionTable({ data }) {
+
+    const dateOptions = { hour: 'numeric', minute: 'numeric', year: 'numeric', month: 'long', day: 'numeric' };
+
     return (
         <table className={Styles.table}>
             <thead>
@@ -64,13 +67,9 @@ function TransactionTable({ data }) {
                                 {item.closedBy.username}
                             </td>
                             <td>
-                                {() => {
-                                    const time = new Date(item.updatedAt)
-                                    console.log(time.toISOString())
-                                    return (
-                                        time
-                                    )
-                                }}
+                                {
+                                    (new Date(item.updatedAt)).toLocaleDateString('en-IN', dateOptions)
+                                }
                             </td>
                         </tr>
                     ))

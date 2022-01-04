@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import Styles from '../styles/components/layout.module.css';
 
 export default function Layout({ children }) {
+
     return (
-        <div>
+        <div className={Styles.topLevelContainer}>
             <nav className={Styles.topNavContainer}>
                 <div className={Styles.topNav}>
                     <div className={Styles.navHeadingContainer}>
@@ -14,11 +16,14 @@ export default function Layout({ children }) {
                     </div>
                     <div className={Styles.navItemsContainer}>
                         <div className={Styles.navItem}>
-                            <span>
-                                Logout
+                            <span className={Styles.profileIconContainer}>
+                                <FaUser />
                             </span>
                             <div className={Styles.navDropdownContent}>
-                                <Link to="/logout">
+                                <Link className={Styles.navDropdownItem} to="/profile">
+                                    Profile
+                                </Link>
+                                <Link className={Styles.navDropdownItem} to="/logout">
                                     Logout
                                 </Link>
                             </div>
@@ -37,6 +42,15 @@ export default function Layout({ children }) {
                     <Link to="/transactions" className={Styles.sideItem}>
                         Transactions
                     </Link>
+                    {
+                        localStorage.getItem('role') === 'admin' ? (
+                            <Link to="/master-data" className={Styles.sideItem}>
+                                Master
+                            </Link>
+                        ) : (
+                            <></>
+                        )
+                    }
                     {/* <Link to="/private" className={Styles.sideItem}>
                         Private
                     </Link>

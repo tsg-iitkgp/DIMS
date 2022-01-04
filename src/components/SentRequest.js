@@ -36,7 +36,7 @@ function SentRequest({ data, setRequests }) {
                         Item
                     </th>
                     <th>
-                        To
+                        From
                     </th>
                     <th>
                         By
@@ -53,7 +53,7 @@ function SentRequest({ data, setRequests }) {
                         {data.item.name}
                     </td>
                     <td>
-                        {data.to.name}
+                        {data.from.name}
                     </td>
                     <td>
                         {data.requestedBy.username}

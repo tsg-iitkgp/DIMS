@@ -35,8 +35,9 @@ export default function Login({ history }) {
             .then((response) => (response.json()))
             .then((jsonData) => {
                 // console.log(jsonData);
-                if (jsonData.token) {
+                if (jsonData.token && jsonData.role) {
                     localStorage.setItem('authToken', jsonData.token);
+                    localStorage.setItem('role', jsonData.role);
                     history.push('/');
                 } else {
                     setError(jsonData.error);
