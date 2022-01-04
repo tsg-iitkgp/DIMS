@@ -1,0 +1,49 @@
+.mainContainer {
+    padding: 30px;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cardsContainer .card {
+    width: 90%;
+    max-width: 300px;
+    overflow: hidden;
+    margin: 15px;
+    padding: 15px;
+}
+
+.cardsContainer .card .storeId {
+    font-size: 38px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cardsContainer .card .storeName {
+    font-size: 22px;
+    margin: 8px 0;
+}
+
+.cardsContainer .card .storeLocation {
+    font-size: 14px;
+    color: rgb(102, 102, 102);
+}
+
+.cardsContainer .card .footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardsContainer .card .footer button {
+    margin: 20px 0;
+    background-color: #f1c40f;
+    transition: all 0.2s ease;
+}
+
+.cardsContainer .card .footer button:hover {
+    background-color: #f7d449;
+    transition: all 0.2s ease;
+}

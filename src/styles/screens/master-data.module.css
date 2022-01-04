@@ -1,0 +1,42 @@
+.sectionContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sectionContainer .heading {
+    margin: 30px 0;
+}
+
+.sectionContainer .gridContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sectionContainer .gridContainer .gridItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 40px;
+    margin: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+}
+
+.sectionContainer .gridContainer .gridItem:hover, .sectionContainer .gridContainer .gridItem.active {
+    border-color: #b6940e;
+    color: #b6940e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sectionContainer .gridContainer .gridItem .gridItemIcon {
+    margin: 10px auto;
+    font-size: 24px;
+}
+
+.sectionContainer .body {
+    align-self: stretch;
+}

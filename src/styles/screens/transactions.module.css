@@ -1,0 +1,15 @@
+.actionsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.actionsContainer button {
+    background-color: #f1c40f;
+    transition: all 0.2s ease-in-out;
+}
+
+.actionsContainer button:hover {
+    background-color: #f7d449;
+    transition: all 0.2s ease-in-out;
+}
