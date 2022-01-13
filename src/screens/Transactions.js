@@ -6,6 +6,8 @@ import Styles from '../styles/screens/transactions.module.css';
 function Transactions({ history }) {
 
     const [storeTransactions, setStoreTransactions] = useState([]);
+    const [tableHeader, setTableHeader] = useState([]);
+    const [category, setCategory] = useState('store-to-store');
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) {
@@ -20,7 +22,13 @@ function Transactions({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch('http://localhost:5050/api/inventory_system/my-store/transactions', options)
+
+            const url = (category === 'store-to-store' ?
+                'http://localhost:5050/api/inventory_system/my-store/transactions'
+                : 'http://localhost:5050/api/inventory_system/purchase/transactions');
+                
+            console.log(url)
+            fetch(url, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     /*
@@ -33,7 +41,9 @@ function Transactions({ history }) {
                     }
                     console.log(data)
                     */
+                    console.log(jsonData)
                     if (jsonData.data) {
+                        setTableHeader(jsonData.tableHeader);
                         setStoreTransactions(jsonData.data);
                     }
                 })
@@ -47,18 +57,38 @@ function Transactions({ history }) {
 
         fetchStoreTransactions();
 
-    }, [history]);
+    }, [history, category]);
+
+    const switchCategory = (categ) => {
+        if (localStorage.getItem('role') === 'admin') {
+            setCategory(categ);
+        }
+    }
     return (
         <Layout>
             <div>
                 <div className={Styles.actionsContainer}>
+                    {
+                        localStorage.getItem('role') === 'admin' ? (
+                            <select onChange={(e) => switchCategory(e.target.value)}>
+                                <option value={'store-to-store'}>
+                                    Store - Store Transactions
+                                </option>
+                                <option value={'purchase'}>
+                                    Purchase Transactions
+                                </option>
+                            </select>
+                        ) : (
+                            <></>
+                        )
+                    }
                     <input type='datetime-local' />
                     <input type='datetime-local' />
                     <button>
                         Generate Report
                     </button>
                 </div>
-                <TransactionTable data={storeTransactions} />
+                <TransactionTable header={tableHeader} category={category} data={storeTransactions} />
             </div>
         </Layout>
     )

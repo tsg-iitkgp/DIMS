@@ -13,3 +13,7 @@
     background-color: #f7d449;
     transition: all 0.2s ease-in-out;
 }
+
+.actionsContainer select, .actionsContainer input {
+    padding: 0 10px;
+}
