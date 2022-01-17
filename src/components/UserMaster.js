@@ -16,9 +16,10 @@ function UserMaster({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch(`${apiHost}/api/inventory_system/users`, options)
+            fetch(`${apiHost}/api/inventory_system/dashboard/users`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
+                    console.log(jsonData.data);
                     setData(jsonData.data);
                 })
                 .catch((error) => {
@@ -29,13 +30,79 @@ function UserMaster({ history }) {
 
         fetchItemData();
 
-    }, []);
+    }, [history]);
 
 
 
     return (
         <div className={Styles.mainContainer}>
-            Users
+            <div className={Styles.actionBtnContainer}>
+                <button className={Styles.addBtn}>
+                    Add User
+                </button>
+            </div>
+            <div className={Styles.dataContainer}>
+                {
+                    data && data.map((user, index) => (
+                        <div key={index} className={Styles.userCard}>
+                            <div className={Styles.row}>
+                                <div className={Styles.gridLabel}>
+                                    Id
+                                </div>
+                                <div className={Styles.gridValue}>
+                                    {user.id}
+                                </div>
+                            </div>
+                            <div className={Styles.row}>
+                                <div className={Styles.gridLabel}>
+                                    Username
+                                </div>
+                                <div className={Styles.gridValue}>
+                                    {user.username}
+                                </div>
+                            </div>
+                            <div className={Styles.row}>
+                                <div className={Styles.gridLabel}>
+                                    Role
+                                </div>
+                                <div className={Styles.gridValue}>
+                                    {user.role}
+                                </div>
+                            </div>
+                            {
+                                user.Store && (
+                                    <>
+                                        <div className={Styles.row}>
+                                            <div className={Styles.gridLabel}>
+                                                Store Name
+                                            </div>
+                                            <div className={Styles.gridValue}>
+                                                {user.Store.name}
+                                            </div>
+                                        </div>
+                                        <div className={Styles.row}>
+                                            <div className={Styles.gridLabel}>
+                                                Store Location
+                                            </div>
+                                            <div className={Styles.gridValue}>
+                                                {user.Store.location}
+                                            </div>
+                                        </div>
+                                        <div className={Styles.row}>
+                                            <div className={Styles.gridLabel}>
+                                                Store Type
+                                            </div>
+                                            <div className={Styles.gridValue}>
+                                                {user.Store.location}
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            }
+                        </div>
+                    ))
+                }
+            </div>
         </div>
     )
 }

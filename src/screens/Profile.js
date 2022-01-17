@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import Styles from "../styles/screens/profile.module.css"
 
 export default function Profile({ history }) {
-    const [privateData, setPrivateData] = useState('');
+    const [userData, setUserData] = useState();
 
     useEffect(() => {
         if (!localStorage.getItem('authToken')) {
@@ -18,14 +19,16 @@ export default function Profile({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch('http://localhost:5050/api/inventory_system/private', options)
+            fetch('http://localhost:5050/api/inventory_system/my-data', options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
-                    setPrivateData(jsonData.message);
+                    console.log(jsonData.data);
+                    setUserData(jsonData.data);
                 })
                 .catch((error) => {
                     console.log(error);
                     localStorage.removeItem('authToken');
+                    localStorage.removeItem('role');
                     history.push('/login');
                     // setError('You are not authorized. Please Login');
                 });
@@ -37,8 +40,30 @@ export default function Profile({ history }) {
 
     return (
         <Layout>
-            <div>
-                This is profile
+            <div className={Styles.mainContainer}>
+                <h1>
+                    User Profile
+                </h1>
+                <div className={Styles.profile}>
+                    {
+                        userData && (
+                            <>
+                                <h1 className={Styles.username}>
+                                    {userData.username}
+                                </h1>
+                                <h2 className={Styles.contact}>
+                                    {userData.email}
+                                </h2>
+                                <p className={Styles.role}>
+                                    {userData.role} role
+                                </p>
+                                <p className={Styles.store}>
+                                    {userData.Store.name} (store), {userData.Store.location}
+                                </p>
+                            </>
+                        )
+                    }
+                </div>
             </div>
         </Layout>
     );

@@ -1,0 +1,47 @@
+.mainContainer {
+    padding: 40px;
+}
+
+.mainContainer .actionBtnContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.mainContainer .actionBtnContainer .addBtn {
+    color: #fff;
+    background-color: rgb(121, 192, 14);
+    transition: all 0.3s ease;
+}
+
+.mainContainer .actionBtnContainer .addBtn:hover {
+    background-color: rgb(99, 165, 0);
+    transition: all 0.3s ease;
+}
+
+.mainContainer .dataContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.mainContainer .dataContainer .userCard {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(139, 139, 139);
+    border-radius: 8px;
+    padding: 30px 25px;
+}
+
+.mainContainer .dataContainer .userCard .row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+}
+
+.mainContainer .dataContainer .userCard .row .gridLabel, .mainContainer .dataContainer .userCard .row .gridValue {
+    flex-grow: 1;
+    flex-basis: 50%;
+    min-width: 50%;
+    padding: 10px;
+}

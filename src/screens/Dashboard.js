@@ -45,12 +45,13 @@ export default function Dashboard({ history }) {
                             total_quantity: item.total_quantity
                         })
                     }
-                    console.log(jsonData.data[0].name)
+                    console.log(jsonData)
                     setStoreBalance(data);
                 })
                 .catch((error) => {
                     console.log(error);
                     localStorage.removeItem('authToken');
+                    localStorage.removeItem('role');
                     history.push('/login');
                     // setError('You are not authorized. Please Login');
                 });

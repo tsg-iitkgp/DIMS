@@ -27,25 +27,25 @@ function TransactionTable({ header, data, category }) {
                                     {item.id}
                                 </td>
                                 <td>
-                                    {item.item.name}
+                                    {item.item && item.item.name}
                                 </td>
                                 <td>
                                     {item.quantity}
                                 </td>
                                 <td>
-                                    {item.from.name}
+                                    {item.from && item.from.name}
                                 </td>
                                 <td>
-                                    {item.to.name}
+                                    {item.to && item.to.name}
                                 </td>
                                 <td>
                                     {item.approved ? "Approved" : "Denied"}
                                 </td>
                                 <td>
-                                    {item.requestedBy.username}
+                                    {item.requestedBy && item.requestedBy.username}
                                 </td>
                                 <td>
-                                    {item.closedBy.username}
+                                    {item.closedBy && item.closedBy.username}
                                 </td>
                                 <td>
                                     {
@@ -61,19 +61,19 @@ function TransactionTable({ header, data, category }) {
                                     {item.id}
                                 </td>
                                 <td>
-                                    {item.item.name}
+                                    {item.item && item.item.name}
                                 </td>
                                 <td>
                                     {item.quantity}
                                 </td>
                                 <td>
-                                    {item.to.name}
+                                    {item.to && item.to.name}
                                 </td>
                                 <td>
                                     {item.price}
                                 </td>
                                 <td>
-                                    {item.raisedBy.username}
+                                    {item.raisedBy && item.raisedBy.username}
                                 </td>
                                 <td>
                                     {
