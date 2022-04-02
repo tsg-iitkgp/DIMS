@@ -1,6 +1,7 @@
 {
   "name": "tsg-inventory-system",
-  "version": "0.1.0",
+  "author": "Praneeth-rdy <tech.tsgiitkgp@gmail.com>",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.1",
@@ -13,7 +14,7 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3"
   },
-  "main": "public/main.js",
+  "main": "build/main.js",
   "homepage": "./",
   "scripts": {
     "start": "react-scripts start",
@@ -21,10 +22,12 @@
     "eject": "react-scripts eject",
     "electron:serve": "concurrently -k \"cross-env BROWSER=none yarn start\" \"yarn electron:start\"",
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
-    "electron:start": "wait-on tcp:3000 && electron ."
+    "electron:start": "wait-on tcp:3000 && electron .",
+    "dist": "electron-builder"
   },
   "build": {
     "extends": null,
+    "productName": "Inventory System",
     "appId": "com.tsg.inventory-system",
     "files": [
       "dist/**/*",
@@ -34,6 +37,22 @@
     ],
     "directories": {
       "buildResources": "src/assets"
+    },
+    "win": {
+        "target": [
+            "nsis",
+            "msi"
+        ],
+        "icon": "public/favicon.ico"
+    },
+    "nsis": {
+
+    },
+    "linux": {
+        "target": [
+            "deb"
+        ],
+        "icon": "public/favicon.ico"
     }
   },
   "eslintConfig": {

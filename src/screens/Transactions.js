@@ -3,6 +3,9 @@ import Layout from '../components/Layout';
 import TransactionTable from "../components/TransactionTable";
 import Styles from '../styles/screens/transactions.module.css';
 
+import { apiHost } from '../api';
+
+
 function Transactions({ history }) {
 
     const [storeTransactions, setStoreTransactions] = useState([]);
@@ -24,9 +27,9 @@ function Transactions({ history }) {
             }
 
             const url = (category === 'store-to-store' ?
-                'http://localhost:5050/api/inventory_system/my-store/transactions'
-                : 'http://localhost:5050/api/inventory_system/purchase/transactions');
-                
+                `${apiHost}/api/inventory_system/my-store/transactions`
+                : `${apiHost}/api/inventory_system/purchase/transactions`);
+
             console.log(url)
             fetch(url, options)
                 .then((response) => (response.json()))

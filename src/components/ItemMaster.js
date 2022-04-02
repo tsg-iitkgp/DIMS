@@ -32,7 +32,7 @@ function ItemMaster({ history }) {
                     // setError('You are not authorized. Please Login');
                 });
 
-            fetch(`http://localhost:5050/api/inventory_system/central-stores`, options)
+            fetch(`${apiHost}/api/inventory_system/central-stores`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     console.log(jsonData)
@@ -42,7 +42,7 @@ function ItemMaster({ history }) {
                     console.log(error);
                 });
 
-            fetch(`http://localhost:5050/api/inventory_system/all_items/`, options)
+            fetch(`${apiHost}/api/inventory_system/all_items/`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     setItems(jsonData.data);
@@ -86,7 +86,7 @@ function ItemMaster({ history }) {
             },
             body: JSON.stringify(formData)
         }
-        fetch('http://localhost:5050/api/inventory_system/off-store-transactions/raise', options)
+        fetch(`${apiHost}/api/inventory_system/off-store-transactions/raise`, options)
             .then((response) => (response.json()))
             .then((jsonData) => (console.log(jsonData)));
         closeForm();

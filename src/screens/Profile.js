@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import Styles from "../styles/screens/profile.module.css"
+import Styles from "../styles/screens/profile.module.css";
+
+import { apiHost } from '../api';
+
 
 export default function Profile({ history }) {
     const [userData, setUserData] = useState();
@@ -19,7 +22,7 @@ export default function Profile({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch('http://localhost:5050/api/inventory_system/my-data', options)
+            fetch(`${apiHost}/api/inventory_system/my-data`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     console.log(jsonData.data);

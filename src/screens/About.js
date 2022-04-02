@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import { apiHost } from '../api';
 
 export default function About({ history }) {
     const [privateData, setPrivateData] = useState('');
@@ -18,7 +19,7 @@ export default function About({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch('http://localhost:5050/api/inventory_system/private', options)
+            fetch(`${apiHost}/api/inventory_system/private`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     setPrivateData(jsonData.message);

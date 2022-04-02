@@ -1,5 +1,6 @@
 import React from 'react';
 import Styles from '../styles/components/request.module.css';
+import {apiHost} from '../api';
 
 function SentRequest({ data, setRequests }) {
 
@@ -12,7 +13,7 @@ function SentRequest({ data, setRequests }) {
     }
 
     const withdrawRequest = (id) => {
-        fetch(`http://localhost:5050/api/inventory_system/requests/withdraw?reqId=${id}`, options)
+        fetch(`${apiHost}/api/inventory_system/requests/withdraw?reqId=${id}`, options)
             .then((response) => (response.json()))
             .then((data)=>(console.log(data)));
         removeRequest();

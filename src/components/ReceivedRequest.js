@@ -1,5 +1,6 @@
 import React from 'react';
 import Styles from '../styles/components/request.module.css';
+import {apiHost} from '../api';
 
 function ReceivedRequest({ data, setRequests }) {
 
@@ -12,13 +13,13 @@ function ReceivedRequest({ data, setRequests }) {
     }
 
     const approveRequest = (id) => {
-        fetch(`http://localhost:5050/api/inventory_system/requests/approve?reqId=${id}`, options)
+        fetch(`${apiHost}/api/inventory_system/requests/approve?reqId=${id}`, options)
             .then((response) => (response.json()))
             .then((data) => (console.log(data)));
         removeRequest();
     }
     const denyRequest = (id) => {
-        fetch(`http://localhost:5050/api/inventory_system/requests/deny?reqId=${id}`, options)
+        fetch(`${apiHost}/api/inventory_system/requests/deny?reqId=${id}`, options)
             .then((response) => (response.json()))
             .then((data) => (console.log(data)));
         removeRequest();

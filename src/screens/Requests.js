@@ -4,7 +4,10 @@ import Modal from 'react-modal';
 import Layout from '../components/Layout';
 import ReceivedRequest from "../components/ReceivedRequest";
 import SentRequest from "../components/SentRequest";
-import Styles from '../styles/screens/requests.module.css'
+import Styles from '../styles/screens/requests.module.css';
+
+import { apiHost } from '../api';
+
 
 function Requests({ history }) {
 
@@ -29,7 +32,7 @@ function Requests({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch(`http://localhost:5050/api/inventory_system/requests/${category}`, options)
+            fetch(`${apiHost}/api/inventory_system/requests/${category}`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     /*const data = []
@@ -52,7 +55,7 @@ function Requests({ history }) {
                     // setError('You are not authorized. Please Login');
                 });
 
-            fetch(`http://localhost:5050/api/inventory_system/from-stores`, options)
+            fetch(`${apiHost}/api/inventory_system/from-stores`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     console.log(jsonData)
@@ -62,7 +65,7 @@ function Requests({ history }) {
                     console.log(error);
                 });
 
-            fetch(`http://localhost:5050/api/inventory_system/all_items/`, options)
+            fetch(`${apiHost}/api/inventory_system/all_items/`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     setItems(jsonData.data);
@@ -104,7 +107,7 @@ function Requests({ history }) {
             body: JSON.stringify(formData)
         }
 
-        fetch('http://localhost:5050/api/inventory_system/requests/raise', options)
+        fetch(`${apiHost}/api/inventory_system/requests/raise`, options)
             .then((response) => (response.json()))
             .then((jsonData) => (console.log(jsonData)));
         closeForm();

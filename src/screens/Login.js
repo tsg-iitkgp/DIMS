@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Styles from '../styles/screens/login.module.css';
 
+import { apiHost } from '../api';
+
+
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
     // const [email, setEmail] = useState('');
@@ -31,7 +34,7 @@ export default function Login({ history }) {
             body: JSON.stringify(postData)
         }
 
-        fetch('http://localhost:5050/api/inventory_system/auth/login', options)
+        fetch(`${apiHost}/api/inventory_system/auth/login`, options)
             .then((response) => (response.json()))
             .then((jsonData) => {
                 // console.log(jsonData);

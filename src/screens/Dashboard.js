@@ -4,6 +4,8 @@ import Layout from "../components/Layout";
 import ItemTable from "../components/ItemTable";
 import logout from "../utils/logout";
 
+import { apiHost } from '../api';
+
 export default function Dashboard({ history }) {
     const [storeBalance, setStoreBalance] = useState([]);
     const [storeName, setStoreName] = useState('');
@@ -21,7 +23,7 @@ export default function Dashboard({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch(`http://localhost:5050/api/inventory_system/my-store`, options)
+            fetch(`${apiHost}/api/inventory_system/my-store`, options)
                 .then((response) => (response.json()))
                 .then((data)=>(setStoreName(data.storeName)))
         }
@@ -34,7 +36,7 @@ export default function Dashboard({ history }) {
                     Authorization: `Bearer ${localStorage.getItem('authToken')}`
                 },
             }
-            fetch('http://localhost:5050/api/inventory_system/my-store/balance', options)
+            fetch(`${apiHost}/api/inventory_system/my-store/balance`, options)
                 .then((response) => (response.json()))
                 .then((jsonData) => {
                     const data = []
