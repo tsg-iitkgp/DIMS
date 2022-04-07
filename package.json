@@ -1,7 +1,7 @@
 {
   "name": "tsg-inventory-system",
   "author": "Praneeth-rdy <tech.tsgiitkgp@gmail.com>",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@electron/remote": "^2.0.1",
@@ -39,20 +39,18 @@
       "buildResources": "src/assets"
     },
     "win": {
-        "target": [
-            "nsis",
-            "msi"
-        ],
-        "icon": "public/favicon.ico"
+      "target": [
+        "nsis",
+        "msi"
+      ],
+      "icon": "public/favicon.ico"
     },
-    "nsis": {
-
-    },
+    "nsis": {},
     "linux": {
-        "target": [
-            "deb"
-        ],
-        "icon": "public/favicon.ico"
+      "target": [
+        "deb"
+      ],
+      "icon": "public/icon.png"
     }
   },
   "eslintConfig": {
